@@ -314,13 +314,17 @@ main {
         flex-direction: row;    /* Сами цифры таймера оставляем в строку... */
         flex-wrap: wrap;        /* ...но разрешаем им переноситься на новую строку, если экран узкий */
         justify-content: center;
-        gap: 12px;              /* Промежуток между кубиками таймера */
+        gap: 16px;              /* Промежуток между кубиками таймера */
         width: 100%;
     }
 
     .timer-box {
-        min-width: 55px;        /* Немного поджимаем кубики, чтобы влезли в ряд */
+        min-width: 120px;        /* Немного поджимаем кубики, чтобы влезли в ряд */
         padding: 8px;
+    }
+
+    .release-date {
+        font-size: 1em;
     }
 }
 
@@ -330,7 +334,18 @@ main {
     }
     
     .timer-box {
-        min-width: 45px;
+        min-width: 90px;
         padding: 6px;
     }
+}
+
+.header, 
+.header-container, 
+.header-timer-container, 
+.timer-box {
+    -webkit-user-select: none;  /* Сафари и мобильные браузеры на iOS */
+    -moz-user-select: none;     /* Фаерфокс */
+    -ms-user-select: none;      /* Эксплорер */
+    user-select: none;          /* Общепринятый стандарт */
+    cursor: default;            /* Меняем курсор на обычную стрелку вместо текстовой палочки */
 }

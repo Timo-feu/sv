@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Leon and -----</title>
+</head>
+<body>
+    <header class="header">
+        
+        <div class="header-container">
+            <h1 class="header-title">Leon and Emily</h1>
+            <div class="header-timer-container">
+                <div class="timer-box">
+                    <p id="days"><span>00</span></p>
+                    <p>days</p>
+                </div>
+                <div class="timer-box">
+                    <p id="hours"><span>00</span></p>
+                    <p>hours</p>
+                </div>
+                <div class="timer-box">
+                    <p id="minutes"><span>00</span></p>
+                    <p>minutes</p>
+                </div>
+                <div class="timer-box">
+                    <p id="second"><span>00</span></p>
+                    <p>second</p>
+                </div>
+                <div class="timer-box">
+                    <p id="millisecond"><span>00</span></p>
+                    <p>ms</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="hero">
+            <div class="hero-container">
+                <div class="hero-pass">
+                    <p class="hero-pass-icon">🎬</p>
+                    <p class="release-date">Coming Soon / 12.09.2026</p>
+                </div>
+                <div class="hero-true">
+                </div>
+            </div>
+        </section>
+        <section  class="programm">
+            <div class="glass-container">
+                <div class="glass-card">
+                    <h2 class="neon-title">🔒 Капсула времени</h2>
+                    <p class="capsule-desc">
+                        Оставьте теплое пожелание или предсказание для молодоженов. 
+                        Мы запечатаем ваше послание, и Леон вместе с Эмили откроют его ровно через год — на первую годовщину свадьбы!
+                    </p>
+                    
+                    <form id="capsule-form">
+                        <div class="input-group">
+                            <input type="text" id="guest-name" placeholder="Ваше Имя и Фамилия" required class="glass-input">
+                        </div>
+
+                        <div class="input-group">
+                            <textarea id="guest-wish" placeholder="Ваше пророчество или пожелание в будущее..." required class="glass-input textarea-fixed" rows="4"></textarea>
+                        </div>
+
+                        <button type="submit" id="submit-btn" class="glass-button">Запечатать в будущее</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <script src="./app.js"></script>
+</body>
+</html>

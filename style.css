@@ -1,0 +1,336 @@
+:root {
+    --bg-dark: #322655;         /* Глубокий космический фиолетово-черный фон */
+    --accent-lavender: #b19ffb; /* Нежная неоновая лаванда для текста и акцентов */
+    --accent-pink: #fbc5ff;     /* Мягкий розовый для свечения */
+    --glass-bg: rgba(255, 255, 255, 0.03); /* Прозрачная основа для стекла */
+    --glass-border: rgba(255, 255, 255, 0.08); /* Тонкий блик на стыке */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, sans-serif; /* Позже заменим на футуристичный */
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: #ffffff;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+body::before, body::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: -1; /* Уносим под контент */
+}
+body::before {
+    background: var(--accent-lavender);
+    top: 15%;
+    left: 10%;
+}
+body::after {
+    background: var(--accent-pink);
+    bottom: 20%;
+    right: 15%;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 30px 10vw; 
+}
+
+.header-container { 
+    display:contents;
+}
+
+.header-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--accent-lavender);
+    transition: text-shadow 0.4s ease;
+    cursor: pointer;
+}
+
+.header-title:hover {
+    text-shadow: 0 0 5px var(--accent-lavender), 
+                 0 0 50px var(--accent-pink); 
+}
+
+.header-timer-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.timer-box {
+    display: flex;
+    flex-direction: column;
+    min-width: 90px; min-height: 40px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(16px); 
+    -webkit-backdrop-filter: blur(16px); 
+    padding: 15px 20px;
+    border-radius: 16px; 
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); 
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); 
+    cursor: pointer;
+}
+
+.timer-box:hover {
+    border-color: var(--accent-lavender);
+    box-shadow: 0 0 20px rgba(177, 159, 251, 0.4), 
+                0 10px 40px rgba(0, 0, 0, 0.4); 
+    transform: translateY(-3px); 
+}
+
+.timer-box p:first-child {
+    font-size: 1.5rem; /* Сделаем цифры чуть крупнее и мощнее */
+    font-weight: bold;
+    color: var(--accent-lavender); /* Возвращаем нашу фирменную лаванду */
+    text-shadow: 0 0 10px rgba(177, 159, 251, 0.3); /* Добавим легкое дефолтное свечение цифрам */
+}
+
+.timer-box p:last-child {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.6); 
+}
+
+.timer-box:last-child {
+    transform: scale(0.85); 
+    opacity: 0.5; 
+    cursor: default;
+}
+
+.timer-box:last-child span {
+    font-size: 0.9rem;
+}
+
+.timer-box:last-child:hover {
+    transform: scale(0.85); 
+    border-color: var(--glass-border); 
+}
+
+main {
+    padding: 2em;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero { 
+    min-height: calc(100vh - 120px); 
+
+}
+
+.hero-container { 
+    width: 80vw; height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-pass { 
+    width: 100%; height: 100%;
+    border-radius: 120px 120px 20px 20px;
+    background: var(--glass-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: var(--glass-border) solid 1px;
+    padding: 20px;
+    backdrop-filter: blur(16px); 
+    -webkit-backdrop-filter: blur(16px); 
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); 
+    transition: all 0.6s ease-in-out;
+}
+.hero-pass:hover {
+    border-color: var(--accent-pink);
+    box-shadow: 0 0 30px rgba(251, 197, 255, 0.25), 
+                0 16px 50px rgba(0, 0, 0, 0.5); 
+}
+
+@keyframes neonPulse {
+    0% { transform: scale(1); filter: drop-shadow(0 0 2px var(--accent-lavender)); }
+    50% { transform: scale(1.05); filter: drop-shadow(0 0 10px var(--accent-pink)); }
+    100% { transform: scale(1); filter: drop-shadow(0 0 2px var(--accent-lavender)); }
+}
+
+.hero-pass-icon {
+    font-size: 4rem; 
+    animation: neonPulse 3s infinite ease-in-out;
+    margin-bottom: 20px;
+}
+
+.release-date {
+    font-size: 1.5rem;
+    font-weight: 300; /* Тонкое футуристичное начертание */
+    letter-spacing: 1px;
+    background: linear-gradient(45deg, #ffffff, var(--accent-pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* Текст-градиент */
+}
+
+.program {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--bg-dark);
+    min-height: 100vh;
+    width: 100%;
+}
+
+.glass-container {
+    margin-top: 2em;
+}
+
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 30px;
+    width: 100%;
+    max-width: 550px; 
+    box-shadow: 0 8px 32px 0 rgba(177, 159, 251, 0.15), 
+                0 0 20px 0 rgba(251, 197, 255, 0.05);
+}
+
+.neon-title {
+    color: #fff;
+    text-shadow: 0 0 10px var(--accent-lavender), 
+                 0 0 10px var(--accent-pink);
+    text-align: center;
+    margin-bottom: 16px;
+    font-size: 24px;
+}
+
+.capsule-desc {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.glass-input {
+    width: 100%;
+    padding: 14px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.glass-input:focus {
+    outline: none;
+    border-color: var(--accent-lavender);
+    box-shadow: 0 0 10px rgba(177, 159, 251, 0.4);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.textarea-fixed {
+    resize: none;
+    /* Убираем баг со скроллбаром справа, пряча полосы прокрутки */
+    overflow: hidden; 
+    /* Добавляем плавное авторасширение по высоте при вводе, если нужно */
+    min-height: 100px; 
+}
+
+.glass-button {
+    width: 100%;
+    padding: 14px;
+    background: transparent;
+    border: 1px solid var(--accent-lavender);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.glass-button:hover {
+    background: var(--accent-lavender);
+    color: var(--bg-dark);
+    box-shadow: 0 0 5px var(--accent-lavender), 
+                0 0 5px var(--accent-pink);
+    transform: translateY(-2px);
+    text-shadow: none;
+}
+
+.glass-button:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    
+    .header-container {
+        display: flex;
+        flex-direction: column; /* Перестраиваем Имена и Таймер вертикально */
+        align-items: center;    /* Центрируем элементы по оси */
+        gap: 20px;              /* Добавляем красивый отступ между ними */
+        width: 100%;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+
+    .header-title {
+        text-align: center;
+        margin: 0;
+        font-size: 28px;        /* Чуть уменьшаем шрифт имени для мобилок */
+    }
+
+    .header-timer-container {
+        display: flex;
+        flex-direction: row;    /* Сами цифры таймера оставляем в строку... */
+        flex-wrap: wrap;        /* ...но разрешаем им переноситься на новую строку, если экран узкий */
+        justify-content: center;
+        gap: 12px;              /* Промежуток между кубиками таймера */
+        width: 100%;
+    }
+
+    .timer-box {
+        min-width: 55px;        /* Немного поджимаем кубики, чтобы влезли в ряд */
+        padding: 8px;
+    }
+}
+
+@media (max-width: 410px) {
+    .header-title {
+        font-size: 24px;
+    }
+    
+    .timer-box {
+        min-width: 45px;
+        padding: 6px;
+    }
+}

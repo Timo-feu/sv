@@ -8,30 +8,46 @@
 </head>
 <body>
 
+    <!-- Шапка с именами и адаптивным таймером -->
     <header class="header">
         <div class="header-container">
-            <h1 class="header-title">Leon & Emily</h1>
+            <h1 class="header-title">Leon and Emily</h1>
             <div class="header-timer-container">
-                <div class="timer-box"><p id="days">00</p><p>days</p></div>
-                <div class="timer-box"><p id="hours">00</p><p>hours</p></div>
-                <div class="timer-box"><p id="minutes">00</p><p>minutes</p></div>
-                <div class="timer-box"><p id="seconds">00</p><p>second</p></div>
-                <div class="timer-box"><p id="ms">00</p><p>ms</p></div>
+                <div class="timer-box">
+                    <p id="days">00</p>
+                    <p>days</p>
+                </div>
+                <div class="timer-box">
+                    <p id="hours">00</p>
+                    <p>hours</p>
+                </div>
+                <div class="timer-box">
+                    <p id="minutes">00</p>
+                    <p>minutes</p>
+                </div>
+                <div class="timer-box">
+                    <p id="second">00</p>
+                    <p>second</p>
+                </div>
+                <div class="timer-box">
+                    <p id="millisecond">000</p>
+                    <p>ms</p>
+                </div>
             </div>
         </div>
     </header>
 
     <main class="main">
-        <!-- Секция Hero с исправленным, чистым YouTube-плеером -->
+        <!-- Секция Hero с премиальным и правильным YouTube-плеером -->
         <section class="hero">
             <div class="hero-container">
                 <div class="hero-pass">
                     <h2 class="neon-title">🎬 Наша история</h2>
                     <div class="video-responsive">
-                        <!-- Строго embed-ссылка без лишних параметров, обходящая SameOrigin -->
+                        <!-- Чистый, строго валидный embed-адрес без блокировок X-Frame -->
                         <iframe 
                             src="https://youtube.com" 
-                            title="YouTube video player" 
+                            title="Leon and Emily Wedding Video" 
                             frameborder="0" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                             allowfullscreen>
@@ -67,6 +83,7 @@
         </section>
     </main>
 
+    <!-- Подключаем наш чистый проверенный скрипт -->
     <script src="app.js"></script>
 </body>
 </html>

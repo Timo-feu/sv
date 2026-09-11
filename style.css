@@ -10,7 +10,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Roboto, sans-serif; /* Позже заменим на футуристичный */
+    font-family: 'Segoe UI', Roboto, sans-serif; 
 }
 
 body {
@@ -28,7 +28,7 @@ body::before, body::after {
     height: 300px;
     border-radius: 50%;
     filter: blur(120px);
-    z-index: -1; /* Уносим под контент */
+    z-index: -1; 
 }
 body::before {
     background: var(--accent-lavender);
@@ -97,10 +97,10 @@ body::after {
 }
 
 .timer-box p:first-child {
-    font-size: 1.5rem; /* Сделаем цифры чуть крупнее и мощнее */
+    font-size: 1.5rem;
     font-weight: bold;
-    color: var(--accent-lavender); /* Возвращаем нашу фирменную лаванду */
-    text-shadow: 0 0 10px rgba(177, 159, 251, 0.3); /* Добавим легкое дефолтное свечение цифрам */
+    color: var(--accent-lavender); 
+    text-shadow: 0 0 10px rgba(177, 159, 251, 0.3); 
 }
 
 .timer-box p:last-child {
@@ -181,11 +181,11 @@ main {
 
 .release-date {
     font-size: 1.5rem;
-    font-weight: 300; /* Тонкое футуристичное начертание */
+    font-weight: 300;
     letter-spacing: 1px;
     background: linear-gradient(45deg, #ffffff, var(--accent-pink));
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; /* Текст-градиент */
+    -webkit-text-fill-color: transparent; 
 }
 
 .program {
@@ -257,9 +257,7 @@ main {
 
 .textarea-fixed {
     resize: none;
-    /* Убираем баг со скроллбаром справа, пряча полосы прокрутки */
     overflow: hidden; 
-    /* Добавляем плавное авторасширение по высоте при вводе, если нужно */
     min-height: 100px; 
 }
 
@@ -295,9 +293,9 @@ main {
     
     .header-container {
         display: flex;
-        flex-direction: column; /* Перестраиваем Имена и Таймер вертикально */
-        align-items: center;    /* Центрируем элементы по оси */
-        gap: 20px;              /* Добавляем красивый отступ между ними */
+        flex-direction: column;
+        align-items: center;    
+        gap: 20px;             
         width: 100%;
         padding: 0 10px;
         box-sizing: border-box;
@@ -306,20 +304,20 @@ main {
     .header-title {
         text-align: center;
         margin: 0;
-        font-size: 28px;        /* Чуть уменьшаем шрифт имени для мобилок */
+        font-size: 28px;       
     }
 
     .header-timer-container {
         display: flex;
-        flex-direction: row;    /* Сами цифры таймера оставляем в строку... */
-        flex-wrap: wrap;        /* ...но разрешаем им переноситься на новую строку, если экран узкий */
+        flex-direction: row;    
+        flex-wrap: wrap;        
         justify-content: center;
-        gap: 16px;              /* Промежуток между кубиками таймера */
+        gap: 16px;            
         width: 100%;
     }
 
     .timer-box {
-        min-width: 120px;        /* Немного поджимаем кубики, чтобы влезли в ряд */
+        min-width: 120px;        
         padding: 8px;
     }
 
@@ -343,9 +341,114 @@ main {
 .header-container, 
 .header-timer-container, 
 .timer-box {
-    -webkit-user-select: none;  /* Сафари и мобильные браузеры на iOS */
-    -moz-user-select: none;     /* Фаерфокс */
-    -ms-user-select: none;      /* Эксплорер */
-    user-select: none;          /* Общепринятый стандарт */
-    cursor: default;            /* Меняем курсор на обычную стрелку вместо текстовой палочки */
+    -webkit-user-select: none;  
+    -moz-user-select: none;     
+    -ms-user-select: none;      
+    user-select: none;         
+    cursor: default;      
+}      
+
+.hero-container {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    min-height: 50vh;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-pass { 
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    background: var(--glass-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: var(--glass-border) solid 1px;
+    padding: 24px;
+    backdrop-filter: blur(16px); 
+    -webkit-backdrop-filter: blur(16px); 
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); 
+}
+
+.video-responsive {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 0 15px var(--accent-lavender);
+    overflow: hidden;
+    background: #000000; 
+}
+
+.native-wedding-video {
+    width: 100%;
+    display: block;
+    height: auto;
+    max-height: 65vh; 
+    object-fit: contain;
+}
+
+.hero-pass .neon-title {
+    margin-bottom: 20px;
+}
+
+@media (min-width: 1200px) {
+    
+    main.main {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr; 
+        grid-template-rows: auto;
+        gap: 40px;                        
+        width: 100%;
+        max-width: 1400px;                
+        margin: 0 auto;
+        padding: 40px 5vw;
+        align-items: start;               
+    }
+
+    .hero {
+        min-height: auto;
+        width: 100%;
+    }
+
+    .hero-container {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .program {
+        min-height: auto;
+        background-color: transparent;  
+        padding: 0;
+        width: 100%;
+    }
+
+    .glass-container {
+        margin-top: 0;                    
+        width: 100%;
+    }
+
+    .glass-card {
+        max-width: 100%;                  
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 
+                    0 0 30px rgba(177, 159, 251, 0.1);
+    }
+
+    .neon-title {
+        font-size: 28px;
+        margin-bottom: 24px;
+    }
+
+    .capsule-desc {
+        font-size: 16px;
+        margin-bottom: 30px;
+    }
+
+    .native-wedding-video {
+        max-height: 55vh;                 
+    }
 }

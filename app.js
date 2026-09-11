@@ -1,70 +1,67 @@
-// Инициализация элементов таймера - СТРОГО ПО ОДНОМУ РАЗУ
 const daysEl = document.getElementById('days');
 const hoursEl = document.getElementById('hours');
 const minutesEl = document.getElementById('minutes');
-const secondsEl = document.getElementById('seconds');
-const msEl = document.getElementById('ms');
+const secondsEl = document.getElementById('second');
+const msEl = document.getElementById('millisecond');
 
-const weddingDate = new Date('September 12, 2026 15:00:00').getTime();
+const targetTime = Date.parse("2026-09-12T12:00:00+02:00");
 
-function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = weddingDate - now;
+function updateTimer() {
+    const now = Date.now();
+    const diff = targetTime - now;
 
-    if (distance < 0) {
-        if(daysEl) daysEl.innerText = "00";
-        if(hoursEl) hoursEl.innerText = "00";
-        if(minutesEl) minutesEl.innerText = "00";
-        if(secondsEl) secondsEl.innerText = "00";
-        if(msEl) msEl.innerText = "00";
+    if (diff <= 0) {
         return;
     }
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / (1000));
-    const ms = Math.floor((distance % 1000) / 10);
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    const ms = Math.floor((diff % (1000)));
 
-    if(daysEl) daysEl.innerText = days < 10 ? '0' + days : days;
-    if(hoursEl) hoursEl.innerText = hours < 10 ? '0' + hours : hours;
-    if(minutesEl) minutesEl.innerText = minutes < 10 ? '0' + minutes : minutes;
-    if(secondsEl) secondsEl.innerText = seconds < 10 ? '0' + seconds : seconds;
-    if(msEl) msEl.innerText = ms < 10 ? '0' + ms : ms;
-}
+    daysEl.textContent = String(days).padStart(2, '0');
+    hoursEl.textContent = String(hours).padStart(2, '0');
+    minutesEl.textContent = String(minutes).padStart(2, '0');
+    secondsEl.textContent = String(seconds).padStart(2, '0');
+    msEl.textContent = String(ms).padStart(3, '0');
 
-setInterval(updateCountdown, 10);
+    requestAnimationFrame(updateTimer);
+};
 
-// Логика отправки формы Капсулы Времени
-document.getElementById('capsule-form')?.addEventListener('submit', function(e) {
+requestAnimationFrame(updateTimer);
+
+
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxTjFGzz03s-EavbeML4V_sKoTenSoC8Mvis1L7KYb9yaD3WisghqlpHfyxR7V4hWXR/exec";
+
+document.getElementById("capsule-form").addEventListener("submit", function(e) {
     e.preventDefault();
-    const btn = document.getElementById('submit-btn');
-    const name = document.getElementById('guest-name')?.value;
-    const wish = document.getElementById('guest-wish')?.value;
-    
-    if(btn) {
-        btn.innerText = "Запечатывается...";
-        btn.disabled = true;
-    }
 
-    // Твой URL Google Скрипта (замени на реальный, если нужно)
-    const scriptURL = 'YOUR_GOOGLE_SCRIPT_URL'; 
+    const submitBtn = document.getElementById("submit-btn");
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Запечатывание...";
 
-    fetch(scriptURL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: name, wish: wish, timestamp: new Date().toISOString() })
+    const formData = {
+        name: document.getElementById("guest-name").value.trim(),
+        wish: document.getElementById("guest-wish").value.trim()
+    };
+
+    fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
     })
-    .then(() -> {
-        if(btn) btn.innerText = "Успешно запечатано! ✨";
-        document.getElementById('capsule-form').reset();
+    .then(() => {
+        alert("Прекрасно! Ваше послание запечатано в облачную капсулу времени.");
+        document.getElementById("capsule-form").reset();
     })
-    .catch(err => {
-        console.error(err);
-        if(btn) {
-            btn.innerText = "Ошибка. Попробовать снова";
-            btn.disabled = false;
-        }
+    .catch(error => {
+        console.error("Ошибка:", error);
+        alert("Ошибка сети. Попробуйте еще раз.");
+    })
+    .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Запечатать в будущее";
     });
 });

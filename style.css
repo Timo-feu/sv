@@ -333,6 +333,7 @@ main {
 
     .hero {
         width: 100% !important;
+        min-height: auto;
     }
 
     .hero-container {
